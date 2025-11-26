@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aviscore - Customer UI</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg-deep: #020617;
+    --bg-main: #0B1120;
+    --bg-card: #111827;
+    --accent: #38BDF8;
+    --text: #E2E8F0;
+    --text-soft: #94A3B8;
+}
+
+body {
+    margin: 0;
+    background: var(--bg-deep);
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+}
+
+/* HEADER */
+.header {
+    padding: 25px 6%;
+    background: #000;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+/* WRAPPER */
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 60px 6%;
+}
+@media (max-width: 900px) {
+    .wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* LEFT COLUMN */
+.left-box {
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid #1E293B;
+}
+.left-box h2 {
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+.left-box .ticker {
+    color: var(--accent);
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+}
+.chart-box {
+    width: 100%;
+    height: 260px;
+    background: #0A0F1C;
+    border-radius: 10px;
+    border: 1px solid #1E293B;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-soft);
+    margin-bottom: 25px;
+}
+
+/* RIGHT COLUMN */
+.score-box {
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid #1E293B;
+}
+.score-title {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+}
+
+/* GAUGE (シンプルな円形スコアUI) */
+.gauge {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: conic-gradient(
+        var(--accent) calc(var(--value) * 1%),
+        #1E293B 0
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    margin: 0 auto 10px;
+}
+.gauge span {
+    font-size: 1.6rem;
+}
+
+/* SCORE ITEM */
+.score-item {
+    text-align: center;
+    margin-bottom: 35px;
+}
+.score-label {
+    color: var(--text-soft);
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+/* DETAILS */
+.detail-box {
+    margin-top: 40px;
+    background: var(--bg-main);
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #1E293B;
+}
+.detail-box h3 {
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+.detail-box ul {
+    padding-left: 20px;
+}
+.detail-box li {
+    color: var(--text-soft);
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+/* PDF BUTTON */
+.pdf-button {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 12px 32px;
+    background: var(--accent);
+    color: #000;
+    font-weight: 700;
+    border-radius: 8px;
+    text-decoration: none;
+}
+.pdf-button:hover {
+    opacity: 0.85;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">Aviscore – Stock Analysis</div>
+
+<div class="wrapper">
+
+  <!-- LEFT COLUMN -->
+  <div class="left-box">
+    <h2>Apple Inc.</h2>
+    <div class="ticker">AAPL / NASDAQ</div>
+
+    <div class="chart-box">
+      チャート（後でAPIで差し替え）
+    </div>
+
+    <p>
+      Appleは世界最大級のテクノロジー企業であり、iPhone、Mac、サービス分野が長期成長を牽引しています。
+      AviscoreのAI分析により、財務健全性、利益成長性、株価モメンタムを総合的に評価します。
+    </p>
+  </div>
+
+  <!-- RIGHT COLUMN -->
+  <div class="score-box">
+    <div class="score-title">AI スコア分析</div>
+
+    <!-- Market Score -->
+    <div class="score-item">
+      <div class="score-label">Market Score</div>
+      <div class="gauge" style="--value:82;"><span>82</span></div>
+    </div>
+
+    <!-- Risk Score -->
+    <div class="score-item">
+      <div class="score-label">Risk Score</div>
+      <div class="gauge" style="--value:28;"><span>28</span></div>
+    </div>
+
+    <!-- Momentum Score -->
+    <div class="score-item">
+      <div class="score-label">Momentum Score</div>
+      <div class="gauge" style="--value:64;"><span>64</span></div>
+    </div>
+
+    <div class="detail-box">
+      <h3>スコアの根拠</h3>
+      <ul>
+        <li>直近四半期のEPS成長率が安定して高水準。</li>
+        <li>キャッシュフローが強力で財務リスクが低い。</li>
+        <li>テック市場全体のモメンタムが継続中。</li>
+        <li>株価ボラティリティは抑制されており比較的安全。</li>
+      </ul>
+    </div>
+
+    <a href="#" class="pdf-button">PDFレポートを生成</a>
+
+  </div>
+</div>
+
+</body>
+</html>
